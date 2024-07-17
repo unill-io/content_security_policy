@@ -46,6 +46,7 @@ defmodule ContentSecurityPolicy.Plug.AddNonce do
 
   def init(opts) do
     directives = Keyword.get(opts, :directives, @default_directives)
+
     Enum.each(directives, fn directive ->
       Directive.validate_directive!(directive)
     end)
@@ -54,10 +55,12 @@ defmodule ContentSecurityPolicy.Plug.AddNonce do
   end
 
   def call(%{assigns: %{csp_nonce: _nonce}} = conn, _opts), do: conn
+
   def call(conn, opts) do
-    directives = opts
-                 |> Keyword.get(:directives, @default_directives)
-                 |> Enum.uniq
+    directives =
+      opts
+      |> Keyword.get(:directives, @default_directives)
+      |> Enum.uniq()
 
     bytes = Keyword.get(opts, :byte_size, @default_byte_size)
 
@@ -66,9 +69,10 @@ defmodule ContentSecurityPolicy.Plug.AddNonce do
 
     existing_policy = get_policy!(conn)
 
-    updated_policy = Enum.reduce(directives, existing_policy, fn directive, policy ->
-      ContentSecurityPolicy.add_source_value(policy, directive, nonce_source_value)
-    end)
+    updated_policy =
+      Enum.reduce(directives, existing_policy, fn directive, policy ->
+        ContentSecurityPolicy.add_source_value(policy, directive, nonce_source_value)
+      end)
 
     conn
     |> put_private(:content_security_policy, updated_policy)

@@ -11,16 +11,17 @@ defmodule ContentSecurityPolicy.Plug.AddSourceValueTest do
   defp send_response(add_source_value_opts) do
     :post
     |> conn("/foo")
-    |> Setup.call([default_policy: %Policy{}])
+    |> Setup.call(default_policy: %Policy{})
     |> AddSourceValue.call(add_source_value_opts)
     |> send_resp(200, "ok")
   end
 
   describe "call/2" do
     property "adds source values to corresponding directives" do
-      check all valid_directives_with_source_values <-
-        TestHelpers.list_of_valid_directive_source_value_pairs_generator()
-      do
+      check all(
+              valid_directives_with_source_values <-
+                TestHelpers.list_of_valid_directive_source_value_pairs_generator()
+            ) do
         conn = send_response(valid_directives_with_source_values)
 
         assert [csp_header] = get_resp_header(conn, "content-security-policy")

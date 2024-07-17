@@ -8,7 +8,7 @@ defmodule ContentSecurityPolicy.Plug.Setup do
   `"content-security-policy"` header of the response.
 
   ## Example Usage
-  
+
   In a controller or router: 
 
       plug ContentSecurityPolicy.Plug.Setup(

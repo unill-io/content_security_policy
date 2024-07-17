@@ -17,15 +17,15 @@ defmodule ContentSecurityPolicy.Plug.SetupTest do
       conn = send_response()
 
       assert get_resp_header(conn, "content-security-policy") ==
-        ["default-src 'self';"]
+               ["default-src 'self';"]
     end
 
     test "adds a set default content security policy header" do
       default_policy = %Policy{default_src: ["'self'", "https:"]}
-      conn = send_response([default_policy: default_policy])
+      conn = send_response(default_policy: default_policy)
 
       assert get_resp_header(conn, "content-security-policy") ==
-        ["default-src 'self' https:;"]
+               ["default-src 'self' https:;"]
     end
   end
 end

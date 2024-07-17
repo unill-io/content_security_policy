@@ -13,7 +13,7 @@ defmodule ContentSecurityPolicy.DirectiveTest do
     end
 
     property "raises an ArgumentError for any invalid directive" do
-      check all value <- TestHelpers.invalid_directive_generator() do
+      check all(value <- TestHelpers.invalid_directive_generator()) do
         assert_raise(ArgumentError, ~r/Invalid directive/, fn ->
           Directive.validate_directive!(value)
         end)

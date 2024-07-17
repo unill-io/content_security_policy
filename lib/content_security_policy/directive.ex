@@ -12,29 +12,29 @@ defmodule ContentSecurityPolicy.Directive do
   alias ContentSecurityPolicy.Policy
 
   @opaque valid_directive ::
-    :base_uri
-    | :child_src
-    | :connect_src
-    | :default_src
-    | :font_src
-    | :form_action
-    | :frame_ancestors
-    | :frame_src
-    | :img_src
-    | :manifest_src
-    | :media_src
-    | :object_src
-    | :plugin_types
-    | :prefetch_src
-    | :report_uri
-    | :sandbox
-    | :script_src
-    | :script_src_attr
-    | :script_src_elem
-    | :style_src
-    | :style_src_elem
-    | :webrtc
-    | :worker_src
+            :base_uri
+            | :child_src
+            | :connect_src
+            | :default_src
+            | :font_src
+            | :form_action
+            | :frame_ancestors
+            | :frame_src
+            | :img_src
+            | :manifest_src
+            | :media_src
+            | :object_src
+            | :plugin_types
+            | :prefetch_src
+            | :report_uri
+            | :sandbox
+            | :script_src
+            | :script_src_attr
+            | :script_src_elem
+            | :style_src
+            | :style_src_elem
+            | :webrtc
+            | :worker_src
 
   @valid_directives Policy.__struct__()
                     |> Map.keys()

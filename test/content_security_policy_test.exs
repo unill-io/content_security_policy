@@ -37,11 +37,10 @@ defmodule ContentSecurityPolicyTest do
 
   describe "generate_nonce/1" do
     property "outputs a base 64 encoded string of `bytes` length" do
-      check all bytes <- integer(1..1000) do
+      check all(bytes <- integer(1..1000)) do
         base64_encoded_nonce = CSP.generate_nonce(bytes)
 
-        assert {:ok, decoded_nonce} =
-          Base.decode64(base64_encoded_nonce, padding: false)
+        assert {:ok, decoded_nonce} = Base.decode64(base64_encoded_nonce, padding: false)
 
         assert byte_size(decoded_nonce) == bytes
       end

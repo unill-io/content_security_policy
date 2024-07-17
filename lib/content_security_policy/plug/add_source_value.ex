@@ -36,6 +36,7 @@ defmodule ContentSecurityPolicy.Plug.AddSourceValue do
   alias ContentSecurityPolicy.Policy
 
   def init([]), do: raise_no_arguments_error()
+
   def init(opts) do
     Enum.each(opts, fn {directive, _source_value} ->
       Directive.validate_directive!(directive)
@@ -45,6 +46,7 @@ defmodule ContentSecurityPolicy.Plug.AddSourceValue do
   end
 
   def call(_conn, []), do: raise_no_arguments_error()
+
   def call(conn, opts) do
     existing_policy = get_policy!(conn)
 

@@ -69,13 +69,16 @@ defmodule ContentSecurityPolicy do
   Adds a single source value to a directive on the given policy.
   """
   @spec add_source_value(Policy.t(), Directive.valid_directive(), String.t()) ::
-    Policy.t()
+          Policy.t()
   def add_source_value(policy, directive, source_value) do
     Directive.validate_directive!(directive)
 
     current_source_values = Map.get(policy, directive) || []
-    new_source_values = current_source_values ++ [source_value]
-                        |> Enum.uniq
+
+    new_source_values =
+      (current_source_values ++ [source_value])
+      |> Enum.uniq()
+
     Map.put(policy, directive, new_source_values)
   end
 
@@ -86,7 +89,7 @@ defmodule ContentSecurityPolicy do
   @spec generate_nonce(bytes :: pos_integer()) :: String.t()
   def generate_nonce(bytes \\ 32) do
     bytes
-    |> :crypto.strong_rand_bytes
+    |> :crypto.strong_rand_bytes()
     |> Base.encode64(padding: false)
   end
 end

@@ -11,7 +11,7 @@ defmodule ContentSecurityPolicy.Plug.AddNonceTest do
   defp send_response(add_nonce_plug_opts \\ []) do
     :post
     |> conn("/foo")
-    |> Setup.call([default_policy: %Policy{}])
+    |> Setup.call(default_policy: %Policy{})
     |> AddNonce.call(add_nonce_plug_opts)
     |> send_resp(200, "ok")
   end
@@ -20,7 +20,7 @@ defmodule ContentSecurityPolicy.Plug.AddNonceTest do
     :post
     |> conn("/foo")
     |> Map.merge(%{assigns: %{csp_nonce: preset_nonce}})
-    |> Setup.call([default_policy: %Policy{}])
+    |> Setup.call(default_policy: %Policy{})
     |> AddNonce.call(add_nonce_plug_opts)
     |> send_resp(200, "ok")
   end
@@ -32,12 +32,13 @@ defmodule ContentSecurityPolicy.Plug.AddNonceTest do
       csp_nonce = conn.assigns[:csp_nonce]
 
       refute csp_nonce == nil
+
       assert get_resp_header(conn, "content-security-policy") ==
-        ["default-src 'nonce-#{csp_nonce}';"]
+               ["default-src 'nonce-#{csp_nonce}';"]
     end
 
     property "can add a nonce to any number of valid directives" do
-      check all directives <- TestHelpers.list_of_valid_directives_generator() do
+      check all(directives <- TestHelpers.list_of_valid_directives_generator()) do
         conn = send_response(directives: directives)
 
         csp_nonce = conn.assigns[:csp_nonce]
@@ -79,7 +80,6 @@ defmodule ContentSecurityPolicy.Plug.AddNonceTest do
     end
 
     test "does not set a new nonce if one has already been set" do
-
       conn = send_response_with_preset_nonce([], "testnonce")
       csp_nonce = conn.assigns[:csp_nonce]
 
