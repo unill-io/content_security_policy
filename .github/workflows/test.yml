@@ -2,6 +2,9 @@ name: Test
 
 on:
   push:
+    # ignore branches where the release workflow runs as it already calls this one
+    branches-ignore:
+      - main
   pull_request:
   workflow_call:
 
@@ -22,7 +25,7 @@ jobs:
     name: Test (Elixir ${{matrix.elixir}} | OTP ${{matrix.otp}})
 
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     needs: prevent_duplicate_checks
     if: ${{ needs.prevent_duplicate_checks.outputs.should-run == 'true' }}

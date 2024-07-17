@@ -38,6 +38,7 @@ defmodule ContentSecurityPolicy.MixProject do
       {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
       {:plug, "~> 1.1"},
       {:order_invariant_compare, "~> 1.0.0", only: :test},
+      {:semantic_release, "== 1.0.0-alpha.7", only: :dev, runtime: false},
       {:stream_data, ">= 0.0.0", only: :test}
     ]
   end
