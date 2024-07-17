@@ -4,31 +4,20 @@ defmodule ContentSecurityPolicy.TestHelpers do
   """
 
   alias ContentSecurityPolicy.Directive
-  alias ContentSecurityPolicy.Policy
-
-  @valid_directives Policy.__struct__()
-                    |> Map.keys()
-                    |> Enum.reject(&(&1 == :__struct__))
-
-  @doc """
-  Returns a list of all valid directives.
-  """
-  @spec valid_directives() :: list(Directive.valid_directive())
-  def valid_directives, do: @valid_directives
 
   @doc """
   Provides a stream of invalid directive atoms for use in property tests.
   """
   def invalid_directive_generator do
     StreamData.term()
-    |> StreamData.filter(&(&1 not in valid_directives()))
+    |> StreamData.filter(&(&1 not in Directive.valid_directives()))
   end
 
   @doc """
   Provides a stream of valid directive atoms for use in property tests.
   """
   def valid_directive_generator do
-    StreamData.member_of(valid_directives())
+    StreamData.member_of(Directive.valid_directives())
   end
 
   @doc """
@@ -39,7 +28,7 @@ defmodule ContentSecurityPolicy.TestHelpers do
     StreamData.list_of(
       valid_directive_generator(),
       min_length: 1,
-      max_length: length(valid_directives())
+      max_length: length(Directive.valid_directives())
     )
   end
 

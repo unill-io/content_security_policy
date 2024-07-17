@@ -36,9 +36,15 @@ defmodule ContentSecurityPolicy.Directive do
             | :webrtc
             | :worker_src
 
-  @valid_directives Policy.__struct__()
-                    |> Map.keys()
-                    |> Enum.reject(&(&1 == :__struct__))
+  @doc """
+  Returns a list of all valid directives.
+  """
+  @spec valid_directives() :: list(valid_directive())
+  def valid_directives,
+    do:
+      Policy.__struct__()
+      |> Map.keys()
+      |> Enum.reject(&(&1 == :__struct__))
 
   @doc """
   Validates a given directive. Used by other functions in
@@ -47,35 +53,17 @@ defmodule ContentSecurityPolicy.Directive do
   Raises an `ArgumentError` if the directive is not valid.
   """
   @spec validate_directive!(valid_directive()) :: :ok
-  def validate_directive!(:base_uri), do: :ok
-  def validate_directive!(:child_src), do: :ok
-  def validate_directive!(:connect_src), do: :ok
-  def validate_directive!(:default_src), do: :ok
-  def validate_directive!(:font_src), do: :ok
-  def validate_directive!(:form_action), do: :ok
-  def validate_directive!(:frame_ancestors), do: :ok
-  def validate_directive!(:frame_src), do: :ok
-  def validate_directive!(:img_src), do: :ok
-  def validate_directive!(:manifest_src), do: :ok
-  def validate_directive!(:media_src), do: :ok
-  def validate_directive!(:object_src), do: :ok
-  def validate_directive!(:plugin_types), do: :ok
-  def validate_directive!(:prefetch_src), do: :ok
-  def validate_directive!(:report_uri), do: :ok
-  def validate_directive!(:sandbox), do: :ok
-  def validate_directive!(:script_src), do: :ok
-  def validate_directive!(:script_src_attr), do: :ok
-  def validate_directive!(:script_src_elem), do: :ok
-  def validate_directive!(:style_src), do: :ok
-  def validate_directive!(:style_src_elem), do: :ok
-  def validate_directive!(:webrtc), do: :ok
-  def validate_directive!(:worker_src), do: :ok
-
   def validate_directive!(directive) do
-    raise ArgumentError, """
-    Invalid directive (#{inspect(directive)}).
+    case directive in valid_directives() do
+      true ->
+        :ok
 
-    Directive must be one of the following directives: #{inspect(@valid_directives)}
-    """
+      false ->
+        raise ArgumentError, """
+        Invalid directive (#{inspect(directive)}).
+
+        Directive must be one of the following directives: #{inspect(valid_directives())}
+        """
+    end
   end
 end

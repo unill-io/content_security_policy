@@ -7,7 +7,7 @@ defmodule ContentSecurityPolicy.DirectiveTest do
 
   describe "validate_directive!/1" do
     property "returns :ok for all keys of the Property struct" do
-      Enum.each(TestHelpers.valid_directives(), fn directive ->
+      Enum.each(Directive.valid_directives(), fn directive ->
         assert Directive.validate_directive!(directive) == :ok
       end)
     end
