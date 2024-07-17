@@ -14,7 +14,7 @@ of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:content_security_policy, "~> 1.0"}
+    {:content_security_policy, "~> 1.1.0"}
   ]
 end
 ```
