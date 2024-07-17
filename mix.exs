@@ -27,7 +27,7 @@ defmodule ContentSecurityPolicy.MixProject do
   end
 
   defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_),     do: ["lib"]
+  defp elixirc_paths(_), do: ["lib"]
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
@@ -38,7 +38,7 @@ defmodule ContentSecurityPolicy.MixProject do
       {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
       {:plug, "~> 1.1"},
       {:order_invariant_compare, "~> 1.0.0", only: :test},
-      {:stream_data, ">= 0.0.0", only: :test},
+      {:stream_data, ">= 0.0.0", only: :test}
     ]
   end
 
@@ -59,11 +59,13 @@ defmodule ContentSecurityPolicy.MixProject do
   end
 
   defp docs do
-    [main: "getting-started",
-     formatter_opts: [gfm: true],
-     source_url: "https://github.com/mbramson/content_security_policy",
-     extras: [
-       "docs/Getting Started.md"
-    ]]
+    [
+      main: "getting-started",
+      formatter_opts: [gfm: true],
+      source_url: "https://github.com/mbramson/content_security_policy",
+      extras: [
+        "docs/Getting Started.md"
+      ]
+    ]
   end
 end
