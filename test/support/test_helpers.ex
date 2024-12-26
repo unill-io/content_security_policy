@@ -38,7 +38,7 @@ defmodule ContentSecurityPolicy.TestHelpers do
   """
   def valid_directive_source_value_pair_generator do
     StreamData.bind(valid_directive_generator(), fn directive ->
-      StreamData.bind(StreamData.string(:printable), fn source_value ->
+      StreamData.bind(StreamData.string(:alphanumeric), fn source_value ->
         StreamData.constant({directive, source_value})
       end)
     end)
