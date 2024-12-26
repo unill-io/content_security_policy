@@ -4,6 +4,7 @@
     'github>unill-io/.github//renovate/elixir/elixir-lib',
   ],
   packageRules: [
+    // disable Elixir and Erlang updates via asdf because we want to support older versions
     {
       matchManagers: [
         'asdf',
