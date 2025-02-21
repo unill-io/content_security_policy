@@ -4,7 +4,7 @@ defmodule ContentSecurityPolicy.MixProject do
   def project do
     [
       app: :content_security_policy,
-      version: "1.1.1",
+      version: "1.1.0",
       elixir: "~> 1.6",
       elixirc_paths: elixirc_paths(Mix.env()),
       build_embedded: Mix.env() == :prod,
@@ -34,7 +34,7 @@ defmodule ContentSecurityPolicy.MixProject do
     [
       {:credo, "~> 1.7.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "== 1.4.5", only: [:dev, :test], runtime: false},
-      {:ex_doc, "~> 0.37", only: :dev},
+      {:ex_doc, "~> 0.36", only: :dev},
       {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
       {:plug, "~> 1.1"},
       {:order_invariant_compare, "~> 1.0.0", only: :test},
