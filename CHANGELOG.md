@@ -1,5 +1,36 @@
 # Changelog
 
+## [2.0.0](https://github.com/unill-io/content_security_policy/compare/v1.1.1...v2.0.0) (2026-11-04)
+
+### ⚠ Breaking changes
+
+* the minimum supported Elixir version is now 1.16.
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+
+### ✨ Features
+
+* add support for require-trusted-types-for directive ([#17](https://github.com/unill-io/content_security_policy/issues/17)) ([82ab6b6](https://github.com/unill-io/content_security_policy/commit/82ab6b66e648510ff1308c012745885a5416a9c2))
+
+### 🛠 Builds
+
+* **deps:** update dependency semantic_release to == 1.0.0-alpha.10 ([539cf28](https://github.com/unill-io/content_security_policy/commit/539cf28cc10d4d62685595886595f38f8bb5f733))
+
+### ⚙️ Continuous Integrations
+
+* drop Elixir < 1.16, test against 1.16-1.20 and pin runners ([1066a5c](https://github.com/unill-io/content_security_policy/commit/1066a5c291b958f8f15a4381830d6efbfe7f455f))
+* pin release workflow to Ubuntu 24.04 ([#18](https://github.com/unill-io/content_security_policy/issues/18)) ([88e991e](https://github.com/unill-io/content_security_policy/commit/88e991ef3a3424d441d6585de62f686588bb8f8d))
+
+### ♻️ Chores
+
+* **deps:** update all dependencies ([3b1189b](https://github.com/unill-io/content_security_policy/commit/3b1189b9729d27baf45e77aefd908347c8c77366))
+* **deps:** update dependency credo to v1.7.11 ([975c5ec](https://github.com/unill-io/content_security_policy/commit/975c5ec2661666a614eadf630fb21538e3f17663))
+* **deps:** update dependency ex_doc to ~> 0.37 ([#13](https://github.com/unill-io/content_security_policy/issues/13)) ([75c2647](https://github.com/unill-io/content_security_policy/commit/75c264709b77869c3f666ec179ddaf29689ef9e4))
+* **deps:** update dependency mix_test_watch to v1.2.0 ([eca00ed](https://github.com/unill-io/content_security_policy/commit/eca00ed4cdfdbfa9ae7f111c25ec93e505374cf1))
+* **deps:** update dependency stream_data to v0.6.0 ([5f13391](https://github.com/unill-io/content_security_policy/commit/5f13391ccb9d7f1dc016bdc44c3663eaa7e85bd8))
+* fix new warnings from updates ([58a0423](https://github.com/unill-io/content_security_policy/commit/58a0423ab3ec63b5e7091cac6857cf79bccea429))
+* update dev tool-versions to latest ([a518b54](https://github.com/unill-io/content_security_policy/commit/a518b5486438ab2f1e0090da9583047cdd2819b6))
+
 ## [1.1.1](https://github.com/unill-io/content_security_policy/compare/v1.1.0...v1.1.1) (2025-02-21)
 
 ### 🛠 Builds

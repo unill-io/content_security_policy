@@ -17,7 +17,7 @@ def deps do
       {
         :content_security_policy,
         git: "https://github.com/unill-io/content_security_policy.git",
-        tag: "v1.1.1"
+        tag: "v2.0.0"
       }
   ]
 end
