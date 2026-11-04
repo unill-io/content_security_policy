@@ -1,7 +1,9 @@
 defmodule ContentSecurityPolicy.Plug.AddNonceTest do
   use ExUnit.Case, async: true
   use ExUnitProperties
-  use Plug.Test
+
+  import Plug.Test
+  import Plug.Conn
 
   alias ContentSecurityPolicy.Plug.AddNonce
   alias ContentSecurityPolicy.Plug.Setup

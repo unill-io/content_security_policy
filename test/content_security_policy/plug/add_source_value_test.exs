@@ -1,7 +1,9 @@
 defmodule ContentSecurityPolicy.Plug.AddSourceValueTest do
   use ExUnit.Case, async: true
   use ExUnitProperties
-  use Plug.Test
+
+  import Plug.Test
+  import Plug.Conn
 
   alias ContentSecurityPolicy.Plug.AddSourceValue
   alias ContentSecurityPolicy.Plug.Setup
@@ -42,8 +44,11 @@ defmodule ContentSecurityPolicy.Plug.AddSourceValueTest do
     end
 
     test "raises an error if given no directive source value pairs" do
+      # built at runtime so the type checker doesn't flag the intentionally invalid empty list
+      no_pairs = Enum.filter([default_src: "https:"], fn _ -> false end)
+
       assert_raise(ArgumentError, ~r/No directive and source value supplied/, fn ->
-        send_response([])
+        send_response(no_pairs)
       end)
     end
   end
