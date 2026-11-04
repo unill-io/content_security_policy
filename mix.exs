@@ -5,7 +5,7 @@ defmodule ContentSecurityPolicy.MixProject do
     [
       app: :content_security_policy,
       version: "1.1.1",
-      elixir: "~> 1.6",
+      elixir: "~> 1.16",
       elixirc_paths: elixirc_paths(Mix.env()),
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
