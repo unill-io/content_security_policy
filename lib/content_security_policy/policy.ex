@@ -34,6 +34,6 @@ defmodule ContentSecurityPolicy.Policy do
             style_src: nil,
             style_src_elem: nil,
             webrtc: nil,
-            worker_src: nil
+            worker_src: nil,
             require_trusted_types_for: nil
 end
